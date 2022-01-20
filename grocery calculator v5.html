@@ -16,19 +16,19 @@
     <form method="POST">
       How much do you value your time per hour? <!-- this is all the text inputs -->
       <br>
-      <input type="int" id="income_p_hour"> <br />
+      €<input type="int" id="income_p_hour" size="3"> per hour<br />
       <br>
       How much of your time does it take to go grocery shopping in person in minutes?
       <br>
-      <input type="int" id="time_to_shop"> <br />
+      <input type="int" id="time_to_shop" size="3"> minutes <br />
       <br>
       How much is the delivery charge?
       <br>
-      <input type="int" id="delivery_charge"> <br />
+      €<input type="int" id="delivery_charge" size="3"> <br />
       <br>
       How much of your time does it take to order your groceries online in minutes?
       <br>
-      <input type="int" id="time_to_deliver" onkeyup="updateWhenFull()"> <!-- everytime I release a key when
+      <input type="int" id="time_to_deliver" size="3" onkeyup="updateWhenFull()"> minutes <!-- everytime I release a key when
         typing in this text box, it runs the updateWhenFull() function, which is below -->
       <br />
 
