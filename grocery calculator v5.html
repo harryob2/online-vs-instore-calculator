@@ -13,36 +13,30 @@
   </style>
 
   <body>
-    <form method="POST">
+    <form>
       How much do you value your time per hour? <!-- this is all the text inputs -->
       <br>
-      €<input type="int" id="income_p_hour" size="3"> per hour<br />
+      €<input id="income_p_hour" size="3"> per hour<br />
       <br>
       How much of your time does it take to go grocery shopping in person in minutes?
       <br>
-      <input type="int" id="time_to_shop" size="3"> minutes <br />
+      <input id="time_to_shop" size="3"> minutes <br />
       <br>
       How much is the delivery charge?
       <br>
-      €<input type="int" id="delivery_charge" size="3"> <br />
+      €<input id="delivery_charge" size="3"> <br />
       <br>
       How much of your time does it take to order your groceries online in minutes?
       <br>
-      <input type="int" id="time_to_deliver" size="3"> minutes <!-- everytime I release a key when
-        typing in this text box, it runs the updateWhenFull() function, which is below -->
+      <input id="time_to_deliver" size="3"> minutes 
       <br />
 
 <br>
-    <input type="hidden" id="inPersonCost" name="inPersonCost"/>
     Cost of shopping in person: €<span id="inPersonCostText"></span> <br />
-    <input type="hidden" id="deliveryCost" name="deliveryCost"/>
     Cost of shopping online: €<span id="deliveryCostText"></span>
 <br>
 <br>
- <input type="hidden" id="summaryFull" name="summaryFull"/><span id="summaryFullText"></span>
- <!-- the 3 values above, inPersonCost, deliveryCost, and summaryFull are all hidden until
- they have a value. By running the updateProfit() code below we can assign a value
- to these 3 labels -->
+ <span id="summaryFullText"></span>
     </form>
 <script>
 /* making variables for each of the text input boxes */
@@ -50,15 +44,6 @@
     var timeToShop = document.getElementById("time_to_shop");
     var deliveryCharge = document.getElementById("delivery_charge");
     var timeToDeliver = document.getElementById("time_to_deliver");
-
-    var inPersonElement = document.getElementById("inPersonCost");
-    var deliveryElement = document.getElementById("deliveryCost");
-    var summaryFullElement = document.getElementById("summaryFull")
-
-    var inPersonTextElement = document.getElementById("inPersonCostText");
-    var deliveryTextElement = document.getElementById("deliveryCostText");
-    var summaryFullTextElement = document.getElementById("summaryFullText");
-
 
 
     function updateProfit()
@@ -70,23 +55,15 @@
       var deliveryCost = (((Number(incomePerHour.value)/60) * Number(timeToDeliver.value)) + Number(deliveryCharge.value)).toFixed(2);
       var summary = (inPersonCost - deliveryCost).toFixed(2);
       var summaryFull = (summary>0) ? "You should shop online. You will save €" + summary + " everytime you shop." : "You should shop in person. You will save €" + (summary * -1) + " everytime you shop.";
-      inPersonElement.value = inPersonCost;
-      deliveryElement.value = deliveryCost;
-      summaryFullElement.value = summaryFull;
 
-      inPersonTextElement.innerText = inPersonCost;
-      deliveryTextElement.innerText = deliveryCost;
-      summaryFullTextElement.innerText = summaryFull;
+      document.getElementById("inPersonCostText").innerText = inPersonCost;
+      document.getElementById("deliveryCostText").innerText = deliveryCost;
+      document.getElementById("summaryFullText").innerText = summaryFull;
       }
     }
 
       incomePerHour.onchange = timeToShop.onchange = deliveryCharge.onchange = timeToDeliver.onchange = updateProfit;
-//everytime one of these 4 values changes, the updateProfit() function runs
-//you may notice I am using different characters for adding code. This is because there are 3 different languages here, javascript, HTML, and CSS,
-//and they each have unique syntaxes for code.
 </script>
-
-
 
   </body>
 </html>
